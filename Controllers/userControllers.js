@@ -4,6 +4,15 @@ const bcrypt = require('bcryptjs');
 
 const User = require('../Models/userModel');
 
+//Generate jwt token
+const generateJWT = (id) => {
+    return jwt.sign({
+        id
+    }, process.env.JWT_SECRET, {
+        expiresIn: '30d'
+    })
+};
+
 
 // @desc Register new user
 // @route POST /api/users
@@ -46,7 +55,8 @@ const registerUser = asyncHandler(async (req, res) => {
         res.status(201).json({
             _id: user.id,
             name: user.name,
-            email: user.email
+            email: user.email,
+            token: generateJWT(user._id)
         });
     } else {
         res.status(400);
@@ -86,7 +96,8 @@ const loginUser = asyncHandler(async (req, res) => {
         res.status(200).json({
             _id: user.id,
             name: user.name,
-            email: user.email
+            email: user.email,
+            token: generateJWT(user._id)
         });
     } else {
         res.status(400);
@@ -96,7 +107,7 @@ const loginUser = asyncHandler(async (req, res) => {
 
 // @desc Get user data
 // @route GET /api/users/me
-// @access PUBLIC
+// @access PRIVATE
 const getUser = asyncHandler(async (req, res) => {
     res.json({
         message: 'User data'
