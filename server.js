@@ -22,6 +22,7 @@ app.use(express.urlencoded({
 
 
 app.use('/api/goals', require('./Routes/goalRoutes'));
+app.use('/api/users', require('./Routes/userRoutes'));
 
 app.use(errorHandler);
 
