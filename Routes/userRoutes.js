@@ -5,6 +5,9 @@ const {
     loginUser,
     getUser
 } = require('../Controllers/userControllers');
+const {
+    protect
+} = require('../Middlewares/authMiddleware');
 
 const router = express.Router();
 
@@ -12,7 +15,7 @@ router.post('/', registerUser);
 
 router.post('/login', loginUser);
 
-router.get('/me', getUser);
+router.get('/me', protect, getUser);
 
 
 
