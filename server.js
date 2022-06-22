@@ -1,6 +1,7 @@
 const express = require('express');
 const dotenv = require('dotenv').config();
 const colors = require('colors');
+const cors = require('cors');
 
 const {
     errorHandler
@@ -15,6 +16,9 @@ connectDB();
 const app = express();
 
 
+app.use(cors({
+    origin: 'http://localhost:3000'
+}));
 app.use(express.json())
 app.use(express.urlencoded({
     extended: false
