@@ -17,7 +17,7 @@ const app = express();
 
 
 app.use(cors({
-    origin: 'https://accomplished.netlify.app/'
+    origin: ['https://accomplished.netlify.app/', 'https://accomplished.netlify.app/login', 'https://accomplished.netlify.app/register', 'https://accomplished.netlify.app/dashboard']
 }));
 app.use(express.json())
 app.use(express.urlencoded({
