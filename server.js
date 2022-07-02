@@ -28,6 +28,8 @@ app.use(express.urlencoded({
 app.use('/api/goals', require('./Routes/goalRoutes'));
 app.use('/api/users', require('./Routes/userRoutes'));
 
+app.use('/', (req, res) => res.send("The front-end is at"));
+
 app.use(errorHandler);
 
 app.listen(port, () => console.log(`Server started on port ${port}`));
