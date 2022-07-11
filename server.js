@@ -22,6 +22,8 @@ app.use(express.urlencoded({
     extended: false
 }));
 
+app.options('*', cors());
+
 
 app.use('/api/goals', require('./Routes/goalRoutes'));
 app.use('/api/users', require('./Routes/userRoutes'));
